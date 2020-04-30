@@ -3,7 +3,6 @@ import{
     Text, StyleSheet,
     View, Dimensions
 } from 'react-native'
-import { CheckBox} from 'react-native-elements'
 import { RadioButton } from 'react-native-paper'
 import Order from './Order'
 

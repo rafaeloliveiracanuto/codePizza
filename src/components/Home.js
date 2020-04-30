@@ -20,18 +20,19 @@ const styles = StyleSheet.create({
     }
 })
 
-export default class Home extends Component{
-    render(){
-        return(
-            <View style={{alignItems: 'center', justifyContent: 'center', flex: 1}}>
-                <Text style={styles.text}>Welcome to CodeLeap pizza!</Text>
-                <Text style={{paddingBottom: 30, fontSize: 15}}>This will help you order a custom pizza</Text>
-                <Button 
-                    title='Start' type='solid' raised={true}
-                    buttonStyle={styles.button}
-                    titleStyle={{color: '#000000'}}>
-                </Button>
-            </View>
-        )
-    }
+function HomeScreen({navigation}){
+    return(
+        <View style={{alignItems: 'center', justifyContent: 'center', flex: 1}}>
+            <Text style={styles.text}>Welcome to CodeLeap pizza!</Text>
+            <Text style={{paddingBottom: 30, fontSize: 15}}>This will help you order a custom pizza</Text>
+            <Button 
+                title='Start' type='solid' raised={true}
+                buttonStyle={styles.button}
+                titleStyle={{color: '#000000'}}
+                onPress={() => navigation.navigate('Order')}>
+            </Button>
+        </View>
+    )
 }
+
+export default HomeScreen

@@ -7,20 +7,17 @@ import { Button } from 'react-native-elements'
 import Styles from '../styles/Styles'
 import RadioButtonGroup from './RadioButtonGroup'
 
-const height = Dimensions.get('window').height
 const width = Dimensions.get('window').width
-
-let sizeStyle = Styles.currentTab
-let sizeTextStyle = Styles.currentText
-let baseStyle = Styles.tab
-let baseTextStyle = Styles.text
-let extraStyle = Styles.tab
-let extraTextStyle = Styles.text
-
-let type = 'Size'
 
 const initialState = {
     currentTab: 0,
+    sizeStyle: Styles.currentTab,
+    sizeTextStyle: Styles.currentText,
+    baseStyle: Styles.tab,
+    baseTextStyle: Styles.text,
+    extraStyle: Styles.tab,
+    extraTextStyle: Styles.text,
+    type: 'Size'
 }
 
 export default class Order extends Component{
@@ -35,30 +32,37 @@ export default class Order extends Component{
 
     progressToNextTab = () => {
         if(this.state.currentTab == 2){
-            extraStyle = Styles.currentTab
-            extraTextStyle = Styles.currentText
+            const extraStyle = Styles.currentTab
+            const extraTextStyle = Styles.currentText
 
-            sizeStyle = Styles.tab
-            sizeTextStyle = Styles.text
+            const sizeStyle = Styles.tab
+            const sizeTextStyle = Styles.text
 
-            baseStyle = Styles.tab
-            baseTextStyle = Styles.text
+            const baseStyle = Styles.tab
+            const baseTextStyle = Styles.text
 
-            type = 'Extra'
+            const type = 'Extra'
+
+            this.setState({extraStyle, extraTextStyle, sizeStyle,
+                sizeTextStyle, baseStyle, baseTextStyle, type})
         }else if(this.state.currentTab == 1){
-            extraStyle = Styles.tab
-            extraTextStyle = Styles.text
+            const extraStyle = Styles.tab
+            const extraTextStyle = Styles.text
 
-            sizeStyle = Styles.tab
-            sizeTextStyle = Styles.text
+            const sizeStyle = Styles.tab
+            const sizeTextStyle = Styles.text
 
-            baseStyle = Styles.currentTab
-            baseTextStyle = Styles.currentText
+            const baseStyle = Styles.currentTab
+            const baseTextStyle = Styles.currentText
 
-            type = 'Base'
+            const type = 'Base'
+
+            this.setState({extraStyle, extraTextStyle, sizeStyle,
+                sizeTextStyle, baseStyle, baseTextStyle, type})
         }
         else{
-            type = 'Result'
+            const type = 'Result'
+            this.setState({type})
         }
     }
 
@@ -74,18 +78,18 @@ export default class Order extends Component{
                 <Text style={{padding: 20, fontSize: 16}}>Please select the size</Text>
                 <View style={Styles.container}>
                     <View style={Styles.tabs}>
-                        <View style={sizeStyle}>
-                            <Text style={sizeTextStyle}>Size</Text>
+                        <View style={this.state.sizeStyle}>
+                            <Text style={this.state.sizeTextStyle}>Size</Text>
                         </View>
-                        <View style={baseStyle}>
-                            <Text style={baseTextStyle}>Base</Text>
+                        <View style={this.state.baseStyle}>
+                            <Text style={this.state.baseTextStyle}>Base</Text>
                         </View>
-                        <View style={extraStyle}>
-                            <Text style={extraTextStyle}>Extra</Text>
+                        <View style={this.state.extraStyle}>
+                            <Text style={this.state.extraTextStyle}>Extra</Text>
                         </View>
                     </View>
                     
-                    <RadioButtonGroup type={type}></RadioButtonGroup>
+                    <RadioButtonGroup type={this.state.type}></RadioButtonGroup>
                 </View>
                 <View style={{paddingTop: 20, marginLeft: width * 0.5}}>
                     <Button 
