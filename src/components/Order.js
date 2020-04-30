@@ -3,77 +3,28 @@ import{
     Text, StyleSheet,
     View, Dimensions
 } from 'react-native'
-import { CheckBox, Button } from 'react-native-elements'
-import CheckBoxGroup from './CheckBoxGroup'
+import { Button } from 'react-native-elements'
+import Styles from '../styles/Styles'
+import RadioButtonGroup from './RadioButtonGroup'
 
 const height = Dimensions.get('window').height
 const width = Dimensions.get('window').width
 
-let styles = StyleSheet.create({
-    container: {
-        borderColor: '#000000',
-        borderWidth: 1,
-        height: height * 0.4,
-        width: width * 0.8,
-    },
-    button: {
-        height: height * 0.07,
-        width: width * 0.3,
-        backgroundColor: 'transparent',
-        borderColor: '#000000',
-    },
-    tab: {
-        backgroundColor: '#FFFFFF',
-        borderColor: '#000000',
-        borderWidth: 1,
-        height: height * 0.1,
-        width: width * 0.8,
-        alignItems: 'center', alignContent: 'center', flex: 1, justifyContent: 'center'
-    },
-    tabs: {
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-    },
-    currentTab: {
-        backgroundColor: '#000000',
-        borderColor: '#000000',
-        borderWidth: 1,
-        height: height * 0.1,
-        width: width * 0.8,
-        alignItems: 'center', alignContent: 'center', flex: 1, justifyContent: 'center'
-    },
-    text: {
-        color: '#000000',
-        fontSize: 20,
-        textAlign: 'center',
-    },
-    currentText: {
-        color: '#FFFFFF',
-        fontSize: 20,
-        textAlign: 'center',
-    }
-   
-})
-
-let sizeStyle = styles.currentTab
-let sizeTextStyle = styles.currentText
-let baseStyle = styles.tab
-let baseTextStyle = styles.text
-let extraStyle = styles.tab
-let extraTextStyle = styles.text
+let sizeStyle = Styles.currentTab
+let sizeTextStyle = Styles.currentText
+let baseStyle = Styles.tab
+let baseTextStyle = Styles.text
+let extraStyle = Styles.tab
+let extraTextStyle = Styles.text
 
 let type = 'Size'
 
 const initialState = {
     currentTab: 0,
-    currentTabColor: styles.currentTab.backgroundColor,
-    currentText: styles.currentText.color,
-    tabColor: styles.tab.backgroundColor,
-    text: styles.text.color,
-    checkBoxType: 'Size'
 }
 
 export default class Order extends Component{
+
     state = {...initialState}
 
     nextTab = (props) => {
@@ -84,55 +35,45 @@ export default class Order extends Component{
 
     progressToNextTab = () => {
         if(this.state.currentTab == 2){
-            extraStyle = styles.currentTab
-            extraTextStyle = styles.currentText
+            extraStyle = Styles.currentTab
+            extraTextStyle = Styles.currentText
 
-            sizeStyle = styles.tab
-            sizeTextStyle = styles.text
+            sizeStyle = Styles.tab
+            sizeTextStyle = Styles.text
 
-            baseStyle = styles.tab
-            baseTextStyle = styles.text
+            baseStyle = Styles.tab
+            baseTextStyle = Styles.text
 
             type = 'Extra'
         }else if(this.state.currentTab == 1){
-            extraStyle = styles.tab
-            extraTextStyle = styles.text
+            extraStyle = Styles.tab
+            extraTextStyle = Styles.text
 
-            sizeStyle = styles.tab
-            sizeTextStyle = styles.text
+            sizeStyle = Styles.tab
+            sizeTextStyle = Styles.text
 
-            baseStyle = styles.currentTab
-            baseTextStyle = styles.currentText
+            baseStyle = Styles.currentTab
+            baseTextStyle = Styles.currentText
 
             type = 'Base'
-        }else{
-            extraStyle = styles.tab
-            extraTextStyle = styles.text
-
-            sizeStyle = styles.currentTab
-            sizeTextStyle = styles.currentText
-
-            baseStyle = styles.tab
-            baseTextStyle = styles.text
-
-            type = 'Size'
-
-            this.clearTab()
+        }
+        else{
+            type = 'Result'
         }
     }
 
-    clearTab = () => {
-        let currentTab = 0
-        this.setState({currentTab})
-    }
+    //clearTab = () => {
+     //   let currentTab = 0
+    //    this.setState({currentTab})
+   // }
 
     render(){
         
         return(
             <View style={{alignItems: 'center', alignContent: 'center', flex: 1, justifyContent: 'center'}}>
                 <Text style={{padding: 20, fontSize: 16}}>Please select the size</Text>
-                <View style={styles.container}>
-                    <View style={styles.tabs}>
+                <View style={Styles.container}>
+                    <View style={Styles.tabs}>
                         <View style={sizeStyle}>
                             <Text style={sizeTextStyle}>Size</Text>
                         </View>
@@ -144,19 +85,18 @@ export default class Order extends Component{
                         </View>
                     </View>
                     
-                    <CheckBoxGroup type={type}></CheckBoxGroup>
+                    <RadioButtonGroup type={type}></RadioButtonGroup>
                 </View>
                 <View style={{paddingTop: 20, marginLeft: width * 0.5}}>
                     <Button 
                         title='Next' type='outline' raised={true}
-                        buttonStyle={styles.button}
+                        buttonStyle={Styles.button}
                         titleStyle={{color: '#000000', fontSize: 18}}
                         onPress={() => this.nextTab(++this.state.currentTab)}>
                             
                     </Button>
                 </View>
-                
-                    
+    
             </View>
         )
     }
