@@ -17,7 +17,6 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width * 0.2,
         backgroundColor: '#D3D3D3',
         borderColor: '#000000'
-        
     }
 })
 
@@ -30,7 +29,8 @@ export default class Home extends Component{
                 <Button 
                     title='Start' type='solid' raised={true}
                     buttonStyle={styles.button}
-                    titleStyle={{color: '#000000'}}></Button>
+                    titleStyle={{color: '#000000'}}>
+                </Button>
             </View>
         )
     }
