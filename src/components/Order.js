@@ -20,7 +20,7 @@ const initialState = {
     type: 'Size'
 }
 
-export default class Order extends Component{
+export default class OrderScreen extends Component{
 
     state = {...initialState}
 
@@ -65,17 +65,11 @@ export default class Order extends Component{
             this.setState({type})
         }
     }
-
-    //clearTab = () => {
-     //   let currentTab = 0
-    //    this.setState({currentTab})
-   // }
-
+    
     render(){
-        
         return(
             <View style={{alignItems: 'center', alignContent: 'center', flex: 1, justifyContent: 'center'}}>
-                <Text style={{padding: 20, fontSize: 16}}>Please select the size</Text>
+                <Text style={{padding: 20, fontSize: 16}}>Please select the option</Text>
                 <View style={Styles.container}>
                     <View style={Styles.tabs}>
                         <View style={this.state.sizeStyle}>
@@ -89,15 +83,14 @@ export default class Order extends Component{
                         </View>
                     </View>
                     
-                    <RadioButtonGroup type={this.state.type}></RadioButtonGroup>
+                    <RadioButtonGroup type={this.state.type} navigation= {this.props.navigation} route={this.props.route}></RadioButtonGroup>
                 </View>
                 <View style={{paddingTop: 20, marginLeft: width * 0.5}}>
                     <Button 
                         title='Next' type='outline' raised={true}
                         buttonStyle={Styles.button}
                         titleStyle={{color: '#000000', fontSize: 18}}
-                        onPress={() => this.nextTab(++this.state.currentTab)}>
-                            
+                        onPress={() => this.nextTab(++this.state.currentTab)}>       
                     </Button>
                 </View>
     
@@ -105,3 +98,4 @@ export default class Order extends Component{
         )
     }
 }
+

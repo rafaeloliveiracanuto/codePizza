@@ -45,5 +45,8 @@ export default StyleSheet.create({
         color: '#FFFFFF',
         fontSize: 20,
         textAlign: 'center',
+    },
+    checkout: {
+        
     }
 })

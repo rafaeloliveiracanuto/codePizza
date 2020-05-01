@@ -103,9 +103,9 @@ export default class RadioButtonGroup extends Component{
         }else if(this.props.type == 'Extra'){
             choice = radioButtonExtra
         }else if(this.props.type == 'Result'){
-            const text = 'These items were selected: '+this.state.checkedSize+', ' + this.state.checkedBase+', ' + this.state.checkedExtra
+            const options = [this.state.checkedSize, this.state.checkedBase, this.state.checkedExtra]
             const number = this.state.valueSize + this.state.valueBase + this.state.valueExtra
-            alert(text+'. The result is '+number)
+            this.props.navigation.navigate({name: 'Checkout', params: {options: options, result: number}})
         }
         else{
             choice = null
